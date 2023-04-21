@@ -9,7 +9,9 @@ export const forbiddenPasswords = ["amG84h6yeQ", "mc9Q20pdjH", "jnT6Q2f8U5"];
 export default function isValidPassword(password = "") {
   // The following line ensures, that password is always a string, like the number 128 -> string "128"
   if (typeof password !== "string") password = String(password);
-  
+
+  // * * * YOUR CODE GOES IN HERE ... * * *
+ 
   if (password.length !== 10) {
     return false;
   }
@@ -38,16 +40,7 @@ export default function isValidPassword(password = "") {
     return false;
   }
 
-  // * * * YOUR CODE GOES IN HERE ... * * *
-  /*
-   * if (password is not exactly 10 digits or characters...) {
-   *   return ...;
-   * }
-   *
-   * if (is not composed by digits and numbers) {
-   *   return ...;
-   * }
-   */
+  
   const setOfPassword = new Set([...password]);
   if (setOfPassword.size < 4) return false;
   return true;
