@@ -11,37 +11,19 @@ export default function penaltyPoints(password = "") {
 
   // * * * * * * * * * * * * * * * * * * * * * * * * * * * *
   // * * * INSERT YOUR CODE HERE * * * * * * * * * * * * * *
-
-
-
-  if (Object.is(password, null) || !password) {
-    return 0
-  } else {
-    const penArr = []
-    const ascendingArr = []
-    const splittedPass = password.split('')
-    for (let i = 0; i < splittedPass.length; i++) {
-      if (splittedPass[i] === splittedPass[i + 1]) {
-        penArr.push(splittedPass[i], splittedPass[i + 1])
-      }
-      // if(splittedPass[i+1] === (Number(splittedPass[i]) + 1).toString()){
-      //   return false
-      // }
-    
-    }
-
-      if (penArr.length == 0) {
-        return 0
-      } else if (penArr.length == 2) {
-        return 1
-      } else if (
-        penArr.length >= 3
-      ) {
-        return 2
-      }
-    
+  if (password.length < 10) {
+    return 0;
   }
-
+  
+  const regex = /([a-zA-Z0-9])(\1{2,}|\1)/g;
+  const matches = password.match(regex);
+  let points = 0;
+  
+  matches?.forEach((match) => {
+    points += (match.length > 2) ? 2 : 1;
+  });
+  
+  return points;
 
 
 
